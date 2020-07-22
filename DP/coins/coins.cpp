@@ -2,6 +2,8 @@
 #include <map>
 //g++ name.cpp -o name
 //./name < test.txt
+// url:https://www.spoj.com/problems/COINS/
+
 std::map<long, long> dp;
 long dollars(long n){
     if(n<=3){

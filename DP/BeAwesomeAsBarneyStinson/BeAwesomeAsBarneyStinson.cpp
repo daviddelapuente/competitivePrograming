@@ -1,7 +1,9 @@
 #include <iostream>
 #include <vector>
-//g++ helloWordl.cpp -o helloWorld
-//./helloWorld < inHelloWorld.txt
+//g++ name.cpp -o name
+//./name < name.txt
+//url: https://www.spoj.com/problems/BEHAPPY/
+
 std::vector < std::vector < int> > DP(100,std::vector<int> (100, 0));
 int main() {
     

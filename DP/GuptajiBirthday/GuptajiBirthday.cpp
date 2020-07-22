@@ -2,6 +2,7 @@
 #include <vector>
 //g++ name.cpp -o name
 //./name < test.txt
+//url: https://www.spoj.com/problems/SHUB1307/
 
 int limSum(int lim,int a,int b){
     if(a+b>lim || (a==-1 || b==-1)){

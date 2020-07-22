@@ -1,6 +1,8 @@
 #include <iostream>
 //g++ name.cpp -o name
 //./name < test.txt
+//url: https://www.spoj.com/problems/ACODE/
+
 long long ante=0;
 long long anteante=0;
 

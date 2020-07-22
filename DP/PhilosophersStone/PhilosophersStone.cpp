@@ -2,6 +2,7 @@
 #include <vector>
 //g++ name.cpp -o name
 //./name < test.txt
+//url:https://www.spoj.com/problems/BYTESM2/
 
 int filterIndex(int index,int w){
     if(index<0){
