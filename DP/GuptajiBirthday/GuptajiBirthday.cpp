@@ -11,21 +11,69 @@ int limSum(int lim,int a,int b){
     }
 }
 
-int vodkaCount(std::vector< std::vector <int > > V, int k,int n, int m){
-     std::vector< std::vector <int> > DP( n , std::vector<int> (m, 0));
+int vodkaCount(std::vector< std::vector <int > > V, int K,int n, int m){
+    std::vector< std::vector <std::vector <int> > > DP( n , std::vector<std::vector < int> > (m, std::vector<int> (K+1,0) ));
+    
 
-     DP[0][0]==V[0][0];
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            if(i==0 && j==0){
+                if(V[i][j]<=K){
+                    DP[i][j][V[i][j]]=1;
+                }
+            }
+            else if(i==0){
+                for(int k=0;k<K;k++){
+                    if(DP[i][j-1][k]!=0){
+                        if(V[i][j] + k<=K ){
+                            DP[i][j][V[i][j]+k]=1;
+                        }
+                    }
+                }
+            }else if(j==0){
+                for(int k=0;k<K;k++){
+                    if(DP[i-1][j][k]!=0){
+                        if(V[i][j]+k<=K){
+                            DP[i][j][V[i][j] + k]=1;
+                        }
+                    }
+                }
+            }else{
+                //[i][j-1]
+                for(int k=1;k<K;k++){
+                    if(DP[i][j-1][k]==1){
+                        if(V[i][j]+k<=K){
+                            DP[i][j][V[i][j]+k]=1;
+                        }
+                    }
+                }
+                //[i-1][j]
+                for(int k=1;k<K;k++){
+                    if(DP[i-1][j][k]==1){
+                        if(V[i][j]+k<=K){
+                            DP[i][j][V[i][j]+k]=1;
+                        }
+                    }
+                }
+                //[i-1][j-1]
+                for(int k=1;k<K;k++){
+                    if(DP[i-1][j-1][k]==1){
+                        if(V[i][j]+k<=K){
+                            DP[i][j][V[i][j]+k]=1;
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-     for(int i=1;i<m;i++){
-         DP[0][i]=limSum(k,DP[0][i-1],V[0][i]);
-     }
-
-    for(int i=1;i<n;i++){
-         DP[i][0]=limSum(k,DP[i-1][0],V[i][0]);
-     }
-
-     
-
+    int r=-1;
+    for(int k=1;k<=K;k++){
+        if(DP[n-1][m-1][k]==1){
+            r=k;
+        }
+    }
+    return r;
      
 
 
