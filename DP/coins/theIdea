@@ -1,0 +1,44 @@
+understanding the problem:
+
+First notice that you have gold coins from byteland, and then can have a number write on it
+representing it value.
+
+you can exchange 1 coin with a value of N. for N dolars.
+(for example if you have 3 coins with values 3, 5 and 4 then you can exchange all of them for 12 dolars)
+
+Also you can exchange 1 coin with value N for three coins with values N/2, N/3 and N/4.
+rounded down. this means you cant have a coin with value 0. 
+for example if N=2, the exchange will be: (N/2,N/3,N/4)=(1,0,0)
+
+but for example if you have a coin with N = 12 the exange will be 
+(N/2,N/3,N/4)=(6,4,3) and if you converts the new coins to dolars you have 13 dollars!
+(one dolar more if you exchange the first N= 12 coin).
+
+so now we know that there exist some coins that should not be exchanged in the bank (for example N=2)
+and other that must be exchanged in the bank (N=12)
+
+so if our mision is to maximize the dolars, we need yo know wich N suits a bank exchange and wich N 
+suits a dolar exchange.
+
+
+solution:
+
+notice that we only have two options. 
+1) convert N to dolars
+2) convert N to (N/2,N/3,N/4) this will be N/2+N/3+N/4 dolars
+
+and we take the max. and that is, problem solved.
+
+DP solution.
+you have a recursion here. this means that you have to solve subproblems that probably you solved befor
+
+so wath we are going to do is to use a hashmap to store the values that we have calculated.
+
+so the real solution well be something like
+map[n]=max(n, map[n/2] + map[n/3] + map[n/4] )
+
+and the initial conditions are very easy.
+map[0]=0;
+map[1]=1;
+map[2]=2;
+map[3]=3;
