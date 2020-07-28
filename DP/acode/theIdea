@@ -1,0 +1,38 @@
+understanding the problem:
+
+if you index the alfabet like [a,b,...,z] =[1,2,...,26].
+
+for an input like 111. how many combinations of strings you have??
+
+you have aaa, ka, ak = 3.
+
+solution:
+
+i want to introduce the solution for this problem with three examples.
+
+1) imagine you have input= 1113. the posible strings are:
+    aaac, akc, kac, aam, km = 5
+    but if you have a new input = 11134.
+    notice that the 4 can only be a d. becaus 34 isnt a letter in our indexation.
+    that means that if we know f(1113), then we know f(11134) (f is the function that count
+    the posible strings). actualy f(1113)=f(11134)
+
+2) input=1112. then f(1112)=5.
+    what hapens if now we have 11123? this time when we concatenate the 3 in the last position.
+    we can form a 23=v or a 3=c.
+    so in this case f(11123)=f(111)+f(1112)=3+5.
+
+3) the last example is wen you have a 0.
+    input=1112, f(1112)=5
+    but if you concatenate a 0???? 11120
+    you can notice that 0 doesent exist in our indexation so the only leter that can be form in this case
+    is 20=s.
+    so f(11120)=f(111)=3
+
+sooooo
+the solution for this problem is an algorithm that assume that you have precalculated f(S[0:n-1]) and f(S[0:n])
+and if you want f(S[0:n+1]) you can jump to one of the 3 cases.
+
+dp solution.
+you dont need memoization, you just need to variables that stores f(S[0:n-1]) and f(S[0:n])
+and the algorithm return f(S[0:N])
