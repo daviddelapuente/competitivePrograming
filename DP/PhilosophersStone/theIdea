@@ -1,0 +1,47 @@
+understanding the problem
+
+you have a matrix with values from (0 to N)
+
+you start at the first row and end in the last row.
+
+        begin
+| [ 5 ] [ 7 ] [ 0 ] [ 9 ] |   
+| [ 3 ] [ 5 ] [ 2 ] [ 1 ] |
+| [ 0 ] [ 2 ] [ 4 ] [ 4 ] |
+        end
+
+and if you ar at [i][j] you can only move to [i+1][j-1], [i+1][j] or [i+1][j+1]
+
+you want to maximize the number of stones you grab.
+
+solution.
+
+imagine that you are in the row i and you know max values for every posibly path that takes you from
+row 0 to any column in row i.
+    .
+    .
+    .
+row i | [ max0 ] [ max1] [ max2 ] [ max4 ] |
+    .
+    .
+    .
+
+
+so if you want to know the max values of stones for each column in row i+1.
+you have to calculate every path to [i+1][j] (for each j in row i+1). and you keep the max
+
+buuuuut
+we have precalculated the values in row i. (you now max0,...max4)
+so really you only have to compute every path from i to i+1 and keep the max.
+
+solution with DP:
+
+this solution uses a memoization vector that stores the max values for row i.
+
+i=0:
+    //the vector is the first row
+    vector=matrix[0]
+i!=0:
+    vector[i][j]=matrix[i][j]+max(vector[i-1][j-1],vector[i-1][j],vector[i-1][j+1])
+
+finally return max(vector[N-1])
