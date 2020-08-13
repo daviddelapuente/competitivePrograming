@@ -1,0 +1,39 @@
+
+vector<int> avgByDepth(Node* root){
+
+    vector<int> stack();
+    if(root==null){
+        return null;
+    }
+    
+    //we will use a bfs.
+
+    stack.push(root);
+
+    vector<int> results();
+
+    while(stack.size()>0){
+        int count=0;
+        int sum=0;
+        vector<int> tempStack();
+        while(stack.size()>0){
+            
+            Node n=stack.pop();
+            
+            sum+=n.data;
+            count++;
+
+            if(n->right!=Null){
+                tempStack.push(n->right);
+            }
+            if(n->left!=Null){
+                tempStack.push(n->left);
+            }
+
+        }
+
+        stack=tempStack
+
+        results.append(sum/count;)
+    }
+}
