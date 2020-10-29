@@ -6,8 +6,9 @@
 
 long long philCount(std::vector< std::vector <long long > > M,int h, int w){
 
-    //init DP matrix with 0
-    std::vector< std::vector <long long> > DP( h , std::vector<long long> (w, 0));
+    //init DP vector 1 and 2 with 0
+    std::vector<long long> DP1( w ,0);
+    std::vector<long long> DP2( w ,0);
     
     //some particular cases:
 
@@ -33,27 +34,32 @@ long long philCount(std::vector< std::vector <long long > > M,int h, int w){
 
     //we fill the first row of DP
     for(int j=0;j<w;j++){
-        DP[0][j]=M[0][j];
+        DP1[j]=M[0][j];
     }
     
     //we fill the rest of DP
     for(int i=1;i<h;i++){
         for(int j=0;j<w;j++){
             if(j==0){
-                DP[i][j]=std::max(DP[i-1][j],DP[i-1][j+1])+M[i][j];
+                DP2[j]=std::max(DP1[j],DP1[j+1])+M[i][j];
             }else if(j==w-1){
-                DP[i][j]=std::max(DP[i-1][j-1],DP[i-1][j])+M[i][j];
+                DP2[j]=std::max(DP1[j-1],DP1[j])+M[i][j];
             }else{
-                DP[i][j]=std::max(DP[i-1][j-1], std::max(DP[i-1][j],DP[i-1][j+1]) )+M[i][j];
+                DP2[j]=std::max(DP1[j-1], std::max(DP1[j],DP1[j+1]) )+M[i][j];
             }
         }
+
+        //swap dp1 with dp1
+        std::vector<long long> DPaux=DP2;
+        DP2=DP1;
+        DP1=DPaux;
     }
 
     //check the last row to search the result
     long long maximo=0;
     for(int j=0;j<w;j++){
-        if(DP[h-1][j]>maximo){
-            maximo=DP[h-1][j];
+        if(DP1[j]>maximo){
+            maximo=DP1[j];
         }
     }
 
