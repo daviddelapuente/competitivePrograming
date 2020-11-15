@@ -2,7 +2,7 @@
 #include <vector>
 //g++ name.cpp -o name
 //./name < test.txt
-//url: http://codeforces.com/problemset/problem/1396/C
+//url: https://codeforces.com/problemset/problem/1418/C
 
 int min8(int n1,int n2,int n3,int n4,int n5,int n6,int n7,int n8){
     return std::min(n1,std::min(n2,std::min(n3,std::min(n4,std::min(n5,std::min(n6,std::min(n7,n8)))))));
