@@ -6,17 +6,6 @@
 
 std::map<long, long> H;
 
-long dollars(long n){
-    if(n<=3){
-        return H[n];
-    }else{
-        if( H.find(n) == H.end()){
-            H[n]=std::max(dollars(n/2)+dollars(n/3)+dollars(n/4),n);
-        }
-        return H[n];
-    }
-}
-
 int main() {
     
     int n;
